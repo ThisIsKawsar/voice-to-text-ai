@@ -10,8 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const credentials = require("./service-account.json");
-const speechClient = new SpeechClient({ credentials });
+const speechClient = new SpeechClient();
 
 // Gemini API setup
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ""; // Use environment variable
