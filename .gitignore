@@ -5,3 +5,4 @@ venv/
 venv/bin/activate
 /venv
 node_modules
+service-account.json
