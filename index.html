@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bangla Speech-to-Text</title>
+
+    <link rel="stylesheet" href="static/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loader"></div>
+    </div>
+    <div class="container">
+      <h1 class="has-text-align-center wp-block-post-title">
+        Bengali Speech to Text Conversion
+      </h1>
+      <h3 class="wp-block-heading has-text-align-center">SPEAK HERE</h3>
+      <div class="controls">
+        <div id="file_upload_div" class="collapsible_div">
+          <button id="record-toggle" class="glow_btn_hover glow_btn record">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="microphone_icon"
+              viewBox="0 0 384 512"
+              width="20"
+              height="20"
+              style="margin-right: 0px"
+            >
+              <path
+                fill="#ffffff"
+                d="M192 0C139 0 96 43 96 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z"
+              ></path>
+            </svg>
+          </button>
+          <button
+            id="refresh-btn"
+            class="glow-btn refresh"
+            style="margin-left: 10px"
+            disabled
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              width="20"
+              height="20"
+              style="margin-right: 0px"
+            >
+              <path
+                fill="#ffffff"
+                d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"
+              ></path>
+            </svg>
+          </button>
+          <p style="display: none" id="status">Status: Ready</p>
+        </div>
+      </div>
+      <div class="transcripts-wrapper" style="display: none">
+        <div class="transcript-container">
+          <p>
+            <strong>Transcript:</strong> <br /><span id="transcript"></span>
+          </p>
+        </div>
+        <!-- <div class="transcript-container">
+          <div class="conversion-container" id="conversation-container">
+            <p>
+              <strong>Conversation:</strong> <br />
+              <span id="conversation"></span>
+            </p>
+          </div>
+        </div> -->
+      </div>
+      <div id="summary_div" style="display: none">
+        <div class="summary_collapsible_div">
+          <button
+            id="summary"
+            class="summary_btn_hover summary_btn"
+            style="margin-top: 20px; margin-bottom: 20px"
+            disabled
+          >
+            Summarize
+          </button>
+        </div>
+        <div class="transcript-container-full">
+          <p>
+            <strong>Summary:</strong> <br />
+            <span id="summaryOutput"></span>
+          </p>
+        </div>
+        <div class="transcript-container-full" style="margin-top: 10px">
+          <p>
+            <strong>Suggestion:</strong> <br />
+            <span id="suggestionOutput"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="static/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  padding: 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.collapsible_div {
+  display: inline-block;
+}
+
+.glow_btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glow_btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.glow_btn_hover:hover {
+  background: #2980b9;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+  transform: translateY(-2px);
+}
+
+.glow_btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.transcripts-wrapper {
+  display: flex;
+  flex: 1; /* Allows it to grow and fill available space */
+  gap: 1rem;
+}
+
+.transcript-container {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  width: 100%; /* Each takes 50% of the width */
+}
+
+.transcript-container p {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+}
+
+.transcript-container strong {
+  color: #34495e;
+}
+.transcript-container-full {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  width: 100%; /* Each takes 50% of the width */
+}
+
+.transcript-container-full p {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  word-wrap: break-word;
+}
+
+.transcript-container-full strong {
+  color: #34495e;
+}
+
+.summary_collapsible_div {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Ensure the div takes full width for centering */
+}
+.summary_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%; /* Full width of the container */
+  max-width: 100%; /* Ensure it doesn't overflow */
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #2ecc71; /* Green background */
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.summary_btn_hover:hover {
+  background: #27ae60; /* Darker green on hover */
+  box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+  transform: translateY(-2px);
+}
+
+.summary_btn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+/* Loading overlay */
+.loading-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  backdrop-filter: blur(5px); /* Blur effect */
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Rounded spinner */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3; /* Light gray border */
+  border-top: 5px solid #3498db; /* Blue top border for animation */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Base styles for the record toggle button */
+#record-toggle {
+  height: 55px;
+  line-height: 55px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Roboto", Arial, sans-serif;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  padding: 0 20px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  transition: all 0.4s ease-in-out;
+}
+
+/* SVG icon styling */
+#record-toggle svg {
+  height: 1em;
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* Hover effect */
+#record-toggle:hover {
+  background-position: 100% 0;
+}
+
+/* Focus state */
+#record-toggle:focus {
+  outline: none;
+}
+
+/* Record state (green gradient) */
+#record-toggle.record {
+  background-image: linear-gradient(
+    to right,
+    #0ba360,
+    #3cba92,
+    #30dd8a,
+    #2bb673
+  );
+  box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+/* Stop state (red gradient) */
+#record-toggle.stop {
+  background-image: linear-gradient(
+    to right,
+    #fd604c,
+    #fe8676,
+    #fe9e91,
+    #fd6551
+  );
+  box-shadow: 0 4px 15px 0 rgba(253, 96, 76, 0.75);
+}
+/* Center text for h1 and h3 */
+.has-text-align-center {
+  text-align: center;
+}
+
+/* Styling for h1 */
+.wp-block-post-title {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: 700; /* Bold */
+  color: #333; /* Dark color for contrast */
+  margin-bottom: 1rem; /* Space below */
+  line-height: 1.2; /* Improved readability */
+}
+
+/* Styling for h3 */
+.wp-block-heading {
+  font-size: 1.5rem; /* Adjust size as needed */
+  font-weight: 500; /* Medium weight */
+  color: #555; /* Slightly lighter color */
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem; /* Space below */
+  line-height: 1.4;
+}
+
+/* Base button styles for refresh button */
+.glow-btn.refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Matches size for round shape */
+  height: 40px; /* Matches size for round shape */
+  margin-left: 10px; /* Preserves position */
+  border: none;
+  background-image: linear-gradient(
+    to right,
+    #007bff,
+    #0056b3,
+    #339af0,
+    #1e90ff
+  ); /* Red gradient from #record-toggle.stop */
+  border-radius: 50%; /* Round shape */
+  cursor: pointer;
+  transition: all 0.4s ease-in-out; /* Matches #record-toggle transition */
+  box-shadow: 0 4px 15px 0 rgba(114, 76, 253, 0.75); /* Red glow from stop state */
+}
+
+/* Hover effect */
+.glow-btn.refresh:hover {
+  background-position: 100% 0; /* Matches #record-toggle:hover */
+  box-shadow: 0 4px 20px 0 rgba(253, 96, 76, 0.9); /* Slightly stronger red glow */
+}
+
+/* Focus state for accessibility */
+.glow-btn.refresh:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(253, 96, 76, 0.5); /* Red focus ring */
+}
+
+/* Disabled state */
+.glow-btn.refresh:disabled {
+  background: #bdc3c7; /* Matches .glow_btn:disabled */
+  background-image: none; /* Remove gradient */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* SVG icon styles */
+.refresh-icon {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+/* Ensure SVG path fill is consistent */
+.refresh-icon path {
+  fill: #ffffff;
+}

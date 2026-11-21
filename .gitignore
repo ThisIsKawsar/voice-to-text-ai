@@ -1,0 +1,7 @@
+live_bengali_text.txt
+live_bengali_text_free.txt
+live_bengali_text_paid.txt
+venv/
+venv/bin/activate
+/venv
+node_modules
